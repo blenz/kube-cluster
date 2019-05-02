@@ -11,5 +11,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: test-cluster-ip
-          servicePort: 8080
+          serviceName: personal-website
+          servicePort: 1000
