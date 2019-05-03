@@ -1,3 +1,17 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: personal-website
+spec:
+  selector:
+    app: personal-website
+  type: ClusterIP
+  ports:
+    - port: 1000
+      targetPort: 80
+
+---
+
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
