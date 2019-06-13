@@ -1,0 +1,35 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dating-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: dating-backend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dating-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dating-backend
+    spec:
+      containers:
+      - name: dating-backend
+        image: blenz1/dating-app-api
+        ports:
+        - containerPort: 80
+        env:
+          - name: DATABASE_HOST
+            value: dating-database
+          - name: DATABASE_PASSWORD
+            value: dating-database
