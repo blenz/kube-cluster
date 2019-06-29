@@ -25,11 +25,34 @@ spec:
     spec:
       containers:
       - name: dating-backend
-        image: blenz1/dating-app-api
+        image: blenz1/dating-backend
         ports:
         - containerPort: 80
         env:
-          - name: DATABASE_HOST
-            value: dating-database
-          - name: DATABASE_PASSWORD
-            value: dating-database
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: APPSETTINGS_TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: token
+          - name: MYSQLCONNSTR_DefaultConnection
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: db-conn-str
+          - name: CLOUDINARY_CLOUDNAME
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: cloudinary-name
+          - name: CLOUDINARY_APIKEY
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: cloudinary-apikey
+          - name: CLOUDINARY_APISECRET
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: cloudinary-apisecret
