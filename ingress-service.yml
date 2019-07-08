@@ -12,6 +12,8 @@ spec:
     - hosts:
         - brettlenz.com
         - www.brettlenz.com
+        - dating-app.brettlenz.com
+        - www.dating-app.brettlenz.com
       secretName: brettlenz-com
   rules:
     - host: brettlenz.com

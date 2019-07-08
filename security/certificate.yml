@@ -11,6 +11,8 @@ spec:
   dnsNames:
     - brettlenz.com
     - www.brettlenz.com
+    - dating-app.brettlenz.com
+    - www.dating-app.brettlenz.com
   acme:
     config:
       - http01:
@@ -18,4 +20,6 @@ spec:
         domains:
           - brettlenz.com
           - www.brettlenz.com
+          - dating-app.brettlenz.com
+          - www.dating-app.brettlenz.com
 
