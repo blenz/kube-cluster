@@ -28,18 +28,18 @@ spec:
           backend:
             serviceName: personal-website
             servicePort: 80
-    - host: brettlenz.com
+    - host: dating-app.brettlenz.com
       http:
         paths:
-        - path: /dating/(.*)
+        - path: /(.*)
           backend:
-            serviceName: dating-app-api
+            serviceName: dating-frontend
             servicePort: 80
-    - host: www.brettlenz.com
+    - host: www.dating-app.brettlenz.com
       http:
         paths:
-        - path: /dating/(.*)
+        - path: /(.*)
           backend:
-            serviceName: dating-app-api
+            serviceName: dating-frontend
             servicePort: 80
       
