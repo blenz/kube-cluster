@@ -1,0 +1,30 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dating-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: dating-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dating-frontend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dating-frontend
+    spec:
+      containers:
+      - name: dating-frontend
+        image: blenz1/dating-frontend
+        ports:
+        - containerPort: 80
