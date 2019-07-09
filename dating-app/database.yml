@@ -32,7 +32,10 @@ spec:
         image: mysql:5.6
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: password
+          valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: DB_PASSWORD
         ports:
         - containerPort: 3306
           name: mysql

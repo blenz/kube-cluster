@@ -35,24 +35,24 @@ spec:
             valueFrom:
               secretKeyRef:
                 name: dating-app
-                key: token
+                key: APPSETTINGS_TOKEN
           - name: MYSQLCONNSTR_DefaultConnection
             valueFrom:
               secretKeyRef:
                 name: dating-app
-                key: db-conn-str
+                key: DB_CONN_STR
           - name: CLOUDINARY__CLOUDNAME
             valueFrom:
               secretKeyRef:
                 name: dating-app
-                key: cloudinary-name
+                key: CLOUDINARY_NAME
           - name: CLOUDINARY__APIKEY
             valueFrom:
               secretKeyRef:
                 name: dating-app
-                key: cloudinary-apikey
+                key: CLOUDINARY_APIKEY
           - name: CLOUDINARY__APISECRET
             valueFrom:
               secretKeyRef:
                 name: dating-app
-                key: cloudinary-apisecret
+                key: CLOUDINARY_APISECRET
