@@ -4,7 +4,7 @@ metadata:
   name: ingress
   annotations:
     kubernetes.io/ingress.class: nginx
-    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
     certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
     nginx.ingress.kubernetes.io/ssl-redirect: 'true'
 spec:
@@ -12,20 +12,36 @@ spec:
     - hosts:
         - brettlenz.com
         - www.brettlenz.com
+        - dating-app.brettlenz.com
+        - www.dating-app.brettlenz.com
       secretName: brettlenz-com
   rules:
     - host: brettlenz.com
       http:
         paths:
-        - path: /
+        - path: /(.*)
           backend:
             serviceName: personal-website
-            servicePort: 1000
+            servicePort: 80
     - host: www.brettlenz.com
       http:
         paths:
-        - path: /
+        - path: /(.*)
           backend:
             serviceName: personal-website
-            servicePort: 1000
+            servicePort: 80
+    - host: dating-app.brettlenz.com
+      http:
+        paths:
+        - path: /(.*)
+          backend:
+            serviceName: dating-frontend
+            servicePort: 80
+    - host: www.dating-app.brettlenz.com
+      http:
+        paths:
+        - path: /(.*)
+          backend:
+            serviceName: dating-frontend
+            servicePort: 80
       

@@ -1,0 +1,58 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: dating-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: dating-backend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: dating-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: dating-backend
+    spec:
+      containers:
+      - name: dating-backend
+        image: blenz1/dating-backend
+        ports:
+        - containerPort: 80
+        env:
+          - name: ASPNETCORE_ENVIRONMENT
+            value: Production
+          - name: APPSETTINGS__TOKEN
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: APPSETTINGS_TOKEN
+          - name: MYSQLCONNSTR_DefaultConnection
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: DB_CONN_STR
+          - name: CLOUDINARY__CLOUDNAME
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: CLOUDINARY_NAME
+          - name: CLOUDINARY__APIKEY
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: CLOUDINARY_APIKEY
+          - name: CLOUDINARY__APISECRET
+            valueFrom:
+              secretKeyRef:
+                name: dating-app
+                key: CLOUDINARY_APISECRET
