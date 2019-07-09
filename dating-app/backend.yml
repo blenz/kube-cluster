@@ -31,7 +31,7 @@ spec:
         env:
           - name: ASPNETCORE_ENVIRONMENT
             value: Production
-          - name: APPSETTINGS_TOKEN
+          - name: APPSETTINGS__TOKEN
             valueFrom:
               secretKeyRef:
                 name: dating-app
@@ -41,17 +41,17 @@ spec:
               secretKeyRef:
                 name: dating-app
                 key: db-conn-str
-          - name: CLOUDINARY_CLOUDNAME
+          - name: CLOUDINARY__CLOUDNAME
             valueFrom:
               secretKeyRef:
                 name: dating-app
                 key: cloudinary-name
-          - name: CLOUDINARY_APIKEY
+          - name: CLOUDINARY__APIKEY
             valueFrom:
               secretKeyRef:
                 name: dating-app
                 key: cloudinary-apikey
-          - name: CLOUDINARY_APISECRET
+          - name: CLOUDINARY__APISECRET
             valueFrom:
               secretKeyRef:
                 name: dating-app
