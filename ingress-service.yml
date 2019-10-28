@@ -5,8 +5,8 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     nginx.ingress.kubernetes.io/rewrite-target: /$1
-    certmanager.k8s.io/cluster-issuer: 'letsencrypt-prod'
-    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    certmanager.k8s.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   tls:
     - hosts:
@@ -19,29 +19,42 @@ spec:
     - host: brettlenz.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: personal-website
-            servicePort: 80
+          - path: /(.*)
+            backend:
+              serviceName: personal-website
+              servicePort: 80
     - host: www.brettlenz.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: personal-website
-            servicePort: 80
+          - path: /(.*)
+            backend:
+              serviceName: personal-website
+              servicePort: 80
     - host: dating-app.brettlenz.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: dating-frontend
-            servicePort: 80
+          - path: /(.*)
+            backend:
+              serviceName: dating-frontend
+              servicePort: 80
     - host: www.dating-app.brettlenz.com
       http:
         paths:
-        - path: /(.*)
-          backend:
-            serviceName: dating-frontend
-            servicePort: 80
-      
+          - path: /(.*)
+            backend:
+              serviceName: dating-frontend
+              servicePort: 80
+    - host: weather-app.brettlenz.com
+      http:
+        paths:
+          - path: /(.*)
+            backend:
+              serviceName: weather-app-frontend
+              servicePort: 80
+    - host: www.weather-app.brettlenz.com
+      http:
+        paths:
+          - path: /(.*)
+            backend:
+              serviceName: weather-app-frontend
+              servicePort: 80

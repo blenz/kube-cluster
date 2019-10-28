@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weather-app-redis
+spec:
+  type: ClusterIP
+  selector:
+    app: weather-app-redis
+  ports:
+    - port: 6379
+      targetPort: 6379
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: weather-app-redis
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather-app-redis
+    spec:
+      containers:
+        - name: weather-app-redis
+          image: redis:5.0.6
+          ports:
+            - containerPort: 6379

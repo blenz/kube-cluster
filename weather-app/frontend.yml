@@ -1,0 +1,29 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weather-app-frontend
+spec:
+  type: ClusterIP
+  selector:
+    app: weather-app-frontend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: weather-app-frontend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather-app-frontend
+    spec:
+      containers:
+        - name: weather-app-frontend
+          image: blenz1/weather-app-frontend
+          ports:
+            - containerPort: 80

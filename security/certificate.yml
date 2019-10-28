@@ -4,7 +4,7 @@ metadata:
   name: brettlenz-com-tls
 spec:
   secretName: brettlenz-com
-  issuerRef: 
+  issuerRef:
     name: letsencrypt-prod
     kind: ClusterIssuer
   commonName: brettlenz.com
@@ -13,6 +13,8 @@ spec:
     - www.brettlenz.com
     - dating-app.brettlenz.com
     - www.dating-app.brettlenz.com
+    - weather-app.brettlenz.com
+    - www.weather-app.brettlenz.com
   acme:
     config:
       - http01:
@@ -22,4 +24,5 @@ spec:
           - www.brettlenz.com
           - dating-app.brettlenz.com
           - www.dating-app.brettlenz.com
-
+          - weather-app.brettlenz.com
+          - www.weather-app.brettlenz.com

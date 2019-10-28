@@ -1,0 +1,53 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: weather-app-backend
+spec:
+  type: ClusterIP
+  selector:
+    app: weather-app-backend
+  ports:
+    - port: 80
+      targetPort: 80
+
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: weather-app-backend
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: weather-app-backend
+    spec:
+      containers:
+        - name: weather-app-backend
+          image: blenz1/weather-app-backend
+          ports:
+            - containerPort: 80
+          env:
+            - name: ASPNETCORE_ENVIRONMENT
+              value: Production
+            - name: OPENWEATHER__URI
+              valueFrom:
+                secretKeyRef:
+                  name: weather-app
+                  key: OPENWEATHER_URI
+            - name: OPENWEATHER__KEY
+              valueFrom:
+                secretKeyRef:
+                  name: weather-app
+                  key: OPENWEATHER_KEY
+            - name: REDIS__CONFIGURATION
+              value: weather-app-redis
+            - name: REDIS__INSTANCENAME
+              value: WeatherApp
+            - name: REDIS__WEATHERTTL
+              value: "30"
+            - name: CUSTOMCONNSTR_DefaultConnection
+              valueFrom:
+                secretKeyRef:
+                  name: weather-app
+                  key: DB_CONN_STR
